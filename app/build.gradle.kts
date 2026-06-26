@@ -26,17 +26,17 @@ val localProperties = Properties().apply {
     }
 }
 
-val enableAbiSplits = providers.gradleProperty("pixelplay.enableAbiSplits")
+val enableAbiSplits = providers.gradleProperty("siwoplayer.enableAbiSplits")
     .getOrElse("true")
     .toBoolean()
 
-val enableComposeCompilerReports = providers.gradleProperty("pixelplay.enableComposeCompilerReports")
+val enableComposeCompilerReports = providers.gradleProperty("siwoplayer.enableComposeCompilerReports")
     .getOrElse("false")
     .toBoolean()
 
 @Suppress("DEPRECATION")
 android {
-    namespace = "com.theveloper.pixelplay"
+    namespace = "com.kokeeu.siwoplayer"
     compileSdk = 37
 
     sourceSets {
@@ -67,7 +67,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.theveloper.pixelplay"
+        applicationId = "com.kokeeu.siwoplayer"
         minSdk = 30
         targetSdk = 37
         versionCode = (project.findProperty("APP_VERSION_CODE") as? String)?.toInt() ?: 1
@@ -85,7 +85,7 @@ android {
 
     signingConfigs {
         create("release") {
-            storeFile = file("$rootDir/vz-pixelplay.jks")
+storeFile = file("$rootDir/vz-siwoplayer.jks")
             storePassword = keystoreProperties.getProperty("storePassword") ?: "dummyPassword"
             keyAlias = keystoreProperties.getProperty("keyAlias") ?: "dummyAlias"
             keyPassword = keystoreProperties.getProperty("keyPassword") ?: "dummyPassword"
@@ -98,7 +98,7 @@ android {
         }
 
         release {
-            val keystoreFile = file("$rootDir/vz-pixelplay.jks")
+            val keystoreFile = file("$rootDir/vz-siwoplayer.jks")
             signingConfig = if (keystoreFile.exists()) {
                 signingConfigs.getByName("release")
             } else {
